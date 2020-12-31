@@ -147,6 +147,17 @@ nav.navbar{
 	transition: all 0.2s;
 }
 
+#work {
+	position: fixed;
+	top: 0px;
+	padding: 10px 0px 10px 0px;
+	width: 100%;
+	z-index:9999;
+	background:#00c1c1;
+	display: block;
+	/* background: rgba(255,255,255); */
+}
+
 .navbar-nav{
 	float: right;
 }
@@ -162,6 +173,7 @@ nav.navbar.fixed-to-top{
 	display: none;
 	z-index: 9999;
 }
+
 
 .navbar-default .navbar-nav>li>a {
 	color: #fff;
@@ -187,6 +199,7 @@ nav.navbar.fixed-to-top{
 	font-weight: 700;
 	font-size: 2em;
 }
+
 
 /* ================================
 Home sections
