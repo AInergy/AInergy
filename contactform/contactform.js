@@ -90,28 +90,45 @@ jQuery(document).ready(function($) {
     });
     if (ferror) return false;
     else var str = $(this).serialize();
-    var action = $(this).attr('action');
-    if( ! action ) {
-      action = 'contactform/contactform.php';
-    }
-    $.ajax({
-      type: "POST",
-      url: action,
-      data: str,
-      success: function(msg) {
-        // alert(msg);
-        if (msg == 'OK') {
+    var subject=str.split("&");
+
+    Email.send({ 
+      Host: "smtp.gmail.com", 
+      Username: "tongjack778@gmail.com", 
+      Password: "benjietong1990@gmail.com", 
+      To: 'di.shi@ainergysolutions.com', 
+      From: "tongjack778@gmail.com", 
+      Subject: "Message From " + subject[0], 
+      Body: subject.slice(1).join("\n"), 
+    }) 
+      .then(function (message) { 
           $("#sendmessage").addClass("show");
           $("#errormessage").removeClass("show");
           $('.contactForm').find("input, textarea").val("");
-        } else {
-          $("#sendmessage").removeClass("show");
-          $("#errormessage").addClass("show");
-          $('#errormessage').html(msg);
-        }
+      })
+    
+    // var action = $(this).attr('action');
+    // if( ! action ) {
+    //   action = 'contactform/contactform.php';
+    // }
+    // $.ajax({
+    //   type: "POST",
+    //   url: action,
+    //   data: str,
+    //   success: function(msg) {
+    //     // alert(msg);
+    //     if (msg == 'OK') {
+    //       $("#sendmessage").addClass("show");
+    //       $("#errormessage").removeClass("show");
+    //       $('.contactForm').find("input, textarea").val("");
+    //     } else {
+    //       $("#sendmessage").removeClass("show");
+    //       $("#errormessage").addClass("show");
+    //       $('#errormessage').html(msg);
+    //     }
 
-      }
-    });
+    //   }
+    // });
     return false;
   });
 
