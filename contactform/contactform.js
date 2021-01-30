@@ -91,15 +91,19 @@ jQuery(document).ready(function($) {
     if (ferror) return false;
     else var str = $(this).serialize();
     var subject=str.split("&");
-
+    var name=subject[0].split("=")[1].split("+").join(" ");
+    var email=unescape(subject[1].split("=")[1].split("+").join(" "));
+    var sub="subject: "+unescape(subject[2].split("=")[1].split("+").join(" "));
+    var message="message: "+unescape(subject[3].split("=")[1].split("+").join(" "));
     Email.send({ 
       Host: "smtp.gmail.com", 
       Username: "tongjack778@gmail.com", 
       Password: "benjietong1990@gmail.com", 
       To: 'di.shi@ainergysolutions.com', 
+      // To: 'bt2414@columbia.edu', 
       From: "tongjack778@gmail.com", 
-      Subject: "Message From " + subject[0], 
-      Body: subject.slice(1).join("\n"), 
+      Subject:  name+"["+email+"]", 
+      Body: sub+"\n"+message, 
     }) 
       .then(function (message) { 
           $("#sendmessage").addClass("show");
